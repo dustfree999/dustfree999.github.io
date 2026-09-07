@@ -2,56 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Dustfree · Games</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="dustfree — front-end developer. Projects: HTML5 game engine experiments, Canvas rendering, Web Audio synthesis.">
+<title>dustfree · dev</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    min-height:100vh; background:#0a0d24; color:#eef2ff;
-    font-family: ui-rounded, 'Segoe UI', system-ui, sans-serif;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:28px; padding:40px 20px;
-  }
-  h1 { font-size:34px; letter-spacing:6px; font-weight:700; text-shadow:0 0 26px rgba(82,233,255,.4); }
-  p.sub { opacity:.55; font-size:14px; letter-spacing:1px; margin-top:-16px; }
-  .cards { display:flex; flex-direction:column; gap:16px; width:min(420px, 92vw); }
-  a.card {
-    display:block; text-decoration:none; color:inherit;
-    background:rgba(255,255,255,.05); border:1px solid rgba(140,160,255,.18);
-    border-radius:20px; padding:20px 24px;
-    transition:transform .12s ease, border-color .12s ease, background .12s ease;
-  }
-  a.card:active { transform:scale(.97); }
-  a.card:hover { border-color:rgba(110,243,222,.5); background:rgba(255,255,255,.08); }
-  .card b { font-size:22px; letter-spacing:2px; display:block; margin-bottom:4px; }
-  .card span { font-size:13px; opacity:.6; line-height:1.5; display:block; }
-  .tag { display:inline-block; font-size:11px; letter-spacing:1px; padding:2px 10px; border-radius:999px; margin-bottom:8px; }
-  .t1 { background:rgba(110,243,222,.15); color:#6ef3de; }
-  .t2 { background:rgba(82,233,255,.15); color:#52e9ff; }
-  .t3 { background:rgba(201,155,255,.15); color:#c99bff; }
-  footer { font-size:12px; opacity:.35; letter-spacing:1px; }
+  body { background:#0d1117; color:#e6edf3; font-family: ui-monospace, 'Cascadia Code', Consolas, monospace; line-height:1.65; }
+  .wrap { max-width:720px; margin:0 auto; padding:56px 22px; }
+  header { border-bottom:1px solid #21262d; padding-bottom:24px; margin-bottom:32px; }
+  h1 { font-size:26px; color:#58a6ff; }
+  h1 .at { color:#8b949e; }
+  .bio { color:#8b949e; font-size:14px; margin-top:8px; }
+  h2 { font-size:15px; color:#7ee787; margin:34px 0 14px; text-transform:uppercase; letter-spacing:2px; }
+  .proj { border:1px solid #21262d; border-radius:8px; padding:16px 18px; margin-bottom:14px; background:#161b22; }
+  .proj b { color:#e6edf3; font-size:15px; }
+  .proj .stack { font-size:12px; color:#d29922; margin:2px 0 6px; }
+  .proj p { font-size:13px; color:#8b949e; }
+  .proj a { color:#58a6ff; text-decoration:none; font-size:13px; }
+  .proj a:hover { text-decoration:underline; }
+  ul.notes { list-style:none; font-size:13px; color:#8b949e; }
+  ul.notes li::before { content:"# "; color:#7ee787; }
+  footer { margin-top:44px; padding-top:18px; border-top:1px solid #21262d; font-size:12px; color:#484f58; }
 </style>
 </head>
 <body>
-  <h1>DUSTFREE · GAMES</h1>
-  <p class="sub">handmade HTML5 mini-games · all art &amp; sound generated in code</p>
-  <div class="cards">
-    <a class="card" href="/gamework/paradox/">
-      <span class="tag t1">ORIGINAL · ARCADE</span>
-      <b>PARADOX</b>
-      <span>Revolve a dying star and dodge debris — but the real threat is a ghost of your own past replaying every move. Skim past it for PARADOX bonuses.</span>
-    </a>
-    <a class="card" href="/gamework/comet-dash/">
-      <span class="tag t2">ARCADE · 5 CHAPTERS</span>
-      <b>COMET DASH</b>
-      <span>One-tap flight through five asteroid chapters — drifting gates, serpent pairs, solar wind and gravity wells.</span>
-    </a>
-    <a class="card" href="/gamework/gem-merge/">
-      <span class="tag t3">PUZZLE · 7 LEVELS</span>
-      <b>GEM FUSION</b>
-      <span>Slide to merge gems and forge each level target under a move budget — frost, stone, prism and time mechanics await.</span>
-    </a>
+<div class="wrap">
+  <header>
+    <h1>dustfree<span class="at">@github</span></h1>
+    <p class="bio">Front-end developer · interested in browser runtime internals: Canvas 2D rendering pipelines, Web Audio synthesis, zero-dependency single-file architectures.</p>
+  </header>
+
+  <h2>Projects</h2>
+  <div class="proj">
+    <b>zero-dep canvas game runtime</b>
+    <div class="stack">JavaScript · Canvas 2D · Web Audio · fixed-step simulation</div>
+    <p>Experiment series on building complete interactive apps in a single HTML file with no libraries: procedural sprite generation, synthesized audio, object-pooled particles, DPR-aware virtual canvas scaling.</p>
+    <p><a href="/gamework/">live demos →</a></p>
   </div>
-  <footer>tap a card to play · works offline once loaded</footer>
+  <div class="proj">
+    <b>time-replay collision system</b>
+    <div class="stack">ring buffer · interpolation · swept-segment hit test</div>
+    <p>Float32Array history buffer replaying player input at a delay, with angular-gap collision — the core of the PARADOX demo. Pure functions, unit-tested with a Node assertion harness (227k+ assertions).</p>
+  </div>
+  <div class="proj">
+    <b>dom-canvas hybrid tile engine</b>
+    <div class="stack">CSS transform transitions · offscreen canvas · data-URL sprites</div>
+    <p>2048-style merge engine where gem textures are generated per-tier on an offscreen canvas; destination-first slide solver with obstacle segmentation, property-tested in Node.</p>
+  </div>
+
+  <h2>Notes</h2>
+  <ul class="notes">
+    <li>everything on this site is written from scratch — no frameworks, no build step</li>
+    <li>source of these experiments is minified on purpose; the engineering notes above describe the architecture</li>
+  </ul>
+
+  <footer>hosted on GitHub Pages · no trackers</footer>
+</div>
 </body>
 </html>
